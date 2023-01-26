@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:frontend/app/domain/use_cases/chat/update_user_verified_email_uc.dart';
 import 'package:get/instance_manager.dart';
 import 'package:http/http.dart';
 
 import '../../domain/use_cases/chat/get_secrets_uc.dart';
 import '../../domain/use_cases/chat/get_user_uc.dart';
+import '../../domain/use_cases/chat/update_user_verified_email_uc.dart';
 import '../../external/data_sources/remote_data_source.dart';
 import '../../external/data_sources/remote_data_source_impl.dart';
 import '../../infra/repository.dart';
 import '../../infra/repository_impl.dart';
 import 'authorization_controller.dart';
-
 import 'secrets_controller.dart';
 import 'user_controller.dart';
 

@@ -33,7 +33,7 @@ class CustomError extends StatelessWidget {
             const Text(
               kDebugMode
                   ? 'https://docs.flutter.dev/testing/errors'
-                  : "Nós encontramos um erro e já contatamos nossa equipe. Desculpe pela inconveniência causada.",
+                  : "We found an error and already contacted our team. Sorry for the inconvenience.",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 14),
             ),

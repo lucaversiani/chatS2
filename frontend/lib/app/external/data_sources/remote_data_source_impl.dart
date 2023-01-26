@@ -6,7 +6,6 @@ import 'package:http/http.dart';
 import '../models/chat_model.dart';
 import '../models/secret_model.dart';
 import '../models/user_model.dart';
-
 import 'remote_data_source.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
