@@ -36,7 +36,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         style: TextStyle(fontSize: 30)),
                     const SizedBox(height: 15),
                     const Text(
-                      "You will receive the instructions via e-mail",
+                      "You will receive the instructions via email",
                       style: TextStyle(fontSize: 12),
                       textAlign: TextAlign.center,
                     ),
@@ -65,7 +65,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               borderSide:
                                   BorderSide(color: Colors.grey.shade800),
                               borderRadius: BorderRadius.circular(7.5)),
-                          hintText: "E-mail",
+                          hintText: "Email",
                           helperText: ' ',
                           errorStyle:
                               const TextStyle(fontSize: 12, color: Colors.red),
@@ -103,7 +103,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Remember your account?",
+                        const Text("Remember your account? ",
                             style: TextStyle(fontSize: 12)),
                         TextButton(
                             style: TextButton.styleFrom(

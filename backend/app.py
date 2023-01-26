@@ -26,8 +26,7 @@ def main():
     try:
         return run_agent(memory=memory, user_input=user_input)
     except Exception as e:
-        print(str(e))
-        abort(Response('Bad request. Please try again.', status=400))
+        abort(Response(str(e), status=400))
 
 
 if __name__ == 'main':

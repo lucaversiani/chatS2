@@ -31,6 +31,15 @@ class AuthorizationController extends GetxController {
     }
   }
 
+  Future<void> sendEmailVerification(
+      {required UserCredential credential}) async {
+    try {
+      await credential.user!.sendEmailVerification();
+    } catch (e) {
+      throw UnimplementedError(e.toString());
+    }
+  }
+
   Future<void> signOut() async {
     await Get.find<FirebaseAuth>().signOut().then((_) {
       Get.offAllNamed('/login');

@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (string == '' || string == null) {
                           return "Required field.";
                         } else if (!GetUtils.isEmail(string)) {
-                          return "Invalid e-mail.";
+                          return "Invalid email.";
                         } else {
                           return null;
                         }
@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderSide:
                                   BorderSide(color: Colors.grey.shade800),
                               borderRadius: BorderRadius.circular(7.5)),
-                          hintText: "E-mail",
+                          hintText: "Email",
                           helperText: ' ',
                           errorStyle:
                               const TextStyle(fontSize: 12, color: Colors.red),
@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?",
+                        const Text("Don't have an account? ",
                             style: TextStyle(fontSize: 12)),
                         TextButton(
                             style: TextButton.styleFrom(

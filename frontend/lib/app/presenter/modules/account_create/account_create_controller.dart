@@ -28,9 +28,14 @@ class AccountCreateController extends GetxController {
               email: mailController.value.text,
               password: passwordController.value.text);
 
-      if (credential.user != null && credential.user!.emailVerified) {
-        await credential.user!.sendEmailVerification();
+      if (credential.user != null && credential.user!.email != null) {
+        await Get.find<AuthorizationController>()
+            .sendEmailVerification(credential: credential);
       }
+
+      await Get.find<AuthorizationController>().loginWithEmailAndPassword(
+          email: mailController.value.text,
+          password: passwordController.value.text);
 
       await addUserUseCase
           .call(UserModel(

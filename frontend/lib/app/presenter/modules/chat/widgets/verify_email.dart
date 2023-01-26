@@ -27,8 +27,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
         ),
         Container(
           alignment: Alignment.center,
-          child: const Text("Verify your e-mail",
-              style: TextStyle(fontSize: 27.5)),
+          child:
+              const Text("Verify your email", style: TextStyle(fontSize: 27.5)),
         ),
         const SizedBox(
           height: 20,
@@ -62,7 +62,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                       style:
                           TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
                   messageText: const Text(
-                      "E-mail sent! Check your inbox and spam.",
+                      "Email sent! Check your inbox and spam.",
                       style: TextStyle(fontSize: 12)),
                   duration: const Duration(seconds: 5),
                 ));
@@ -79,13 +79,13 @@ class _VerifyEmailState extends State<VerifyEmail> {
                       style:
                           TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
                   messageText: const Text(
-                      "We had a problem sending the e-mail. Try again.",
+                      "We had a problem sending the email. Try again.",
                       style: TextStyle(fontSize: 12)),
                   duration: const Duration(seconds: 5),
                 ));
               }
             },
-            child: const Text("Resend verification e-mail",
+            child: const Text("Resend verification email",
                 style: TextStyle(fontSize: 12, color: Color(0xff11a37f))),
           ),
         ),
@@ -101,7 +101,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
         ),
         Container(
           alignment: Alignment.center,
-          child: const Text("How to verify my e-mail in the speed of light? 🤔",
+          child: const Text("How to verify my email in the speed of light? 🤔",
               style: TextStyle(fontSize: 15.5, fontWeight: FontWeight.bold)),
         ),
         const SizedBox(
@@ -120,7 +120,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
               totalRepeatCount: 1,
               animatedTexts: [
                 TypewriterAnimatedText(
-                    """To verify your e-mail address in the "speed of light", you can follow these steps:
+                    """To verify your email address in the "speed of light", you can follow these steps:
 
 1. Look for a verification link or code in the email sent to the address you provided. This link or code is typically sent when you sign up for a new account or request to change your email address.
 2. Click on the link or enter the code in the verification process. This will confirm that you have access to the email address and it belongs to you.

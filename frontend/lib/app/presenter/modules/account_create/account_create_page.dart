@@ -81,7 +81,7 @@ class _AccountCreatePageState extends State<AccountCreatePage> {
                         if (string == '' || string == null) {
                           return "Required field.";
                         } else if (!GetUtils.isEmail(string)) {
-                          return "Invalid e-mail.";
+                          return "Invalid email.";
                         } else {
                           return null;
                         }
@@ -98,7 +98,7 @@ class _AccountCreatePageState extends State<AccountCreatePage> {
                               borderSide:
                                   BorderSide(color: Colors.grey.shade800),
                               borderRadius: BorderRadius.circular(7.5)),
-                          hintText: "E-mail",
+                          hintText: "Email",
                           helperText: ' ',
                           errorStyle:
                               const TextStyle(fontSize: 12, color: Colors.red),
@@ -130,6 +130,14 @@ class _AccountCreatePageState extends State<AccountCreatePage> {
                           return null;
                         }
                       },
+                      textInputAction: TextInputAction.done,
+                      onFieldSubmitted: _controller.isLoading.value
+                          ? (string) {}
+                          : (string) async {
+                              if (_formKey.currentState!.validate()) {
+                                await _controller.createUserAndLogin();
+                              }
+                            },
                       obscureText: true,
                       style: const TextStyle(fontSize: 12),
                       decoration: InputDecoration(
@@ -236,7 +244,7 @@ class _AccountCreatePageState extends State<AccountCreatePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Already have an account?",
+                        const Text("Already have an account? ",
                             style: TextStyle(fontSize: 12)),
                         TextButton(
                             style: TextButton.styleFrom(

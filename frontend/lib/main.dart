@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/app/presenter/core/authorization_controller.dart';
+import 'package:frontend/app/presenter/utils/custom_error.dart';
 import 'package:get/get.dart';
 import 'package:local_session_timeout/local_session_timeout.dart';
 
@@ -64,6 +65,12 @@ class MyApp extends StatelessWidget {
     return SessionTimeoutManager(
       sessionConfig: sessionConfig,
       child: GetMaterialApp(
+        builder: (BuildContext context, Widget? widget) {
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return CustomError(errorDetails: errorDetails);
+          };
+          return widget!;
+        },
         defaultTransition: Transition.noTransition,
         transitionDuration: const Duration(milliseconds: 1000),
         debugShowCheckedModeBanner: false,
