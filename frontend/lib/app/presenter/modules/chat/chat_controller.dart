@@ -119,7 +119,9 @@ class ChatController extends GetxController {
   }
 
   Future<void> sendChatMessage(
-      {required String userInput, required String chatId}) async {
+      {required String userInput,
+      required String chatId,
+      required bool isRegenerating}) async {
     final apiKey = Get.find<SecretsController>().secrets.value.apiKey;
     late dynamic chatMemory;
 
@@ -141,6 +143,9 @@ class ChatController extends GetxController {
     } else {
       final memory =
           chats.where((element) => element.id == chatId).toList()[0].memory;
+
+      if (isRegenerating) memory["buffer"].removeLast();
+
       chatMemory = jsonEncode({
         "human_prefix": memory["human_prefix"],
         "ai_prefix": memory["ai_prefix"],
@@ -184,8 +189,8 @@ class ChatController extends GetxController {
 
     await deleteLastMessageUseCase
         .call(ChatModel(id: chatId), lastMessage)
-        .then((_) async =>
-            await sendChatMessage(userInput: lastMessage, chatId: chatId));
+        .then((_) async => await sendChatMessage(
+            userInput: lastMessage, chatId: chatId, isRegenerating: true));
   }
 
   Future<void> tryAgainFailedMessage({required String chatId}) async {
@@ -201,8 +206,6 @@ class ChatController extends GetxController {
     } else {
       final memory =
           chats.where((element) => element.id == chatId).toList()[0].memory;
-
-      memory["buffer"].removeLast();
 
       chatMemory = jsonEncode({
         "human_prefix": memory["human_prefix"],

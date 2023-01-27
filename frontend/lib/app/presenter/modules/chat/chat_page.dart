@@ -697,7 +697,9 @@ class _ChatPageState extends State<ChatPage> {
                                                                 chatId: _chatController
                                                                     .selectedChats[
                                                                         0]
-                                                                    .id);
+                                                                    .id,
+                                                                isRegenerating:
+                                                                    false);
                                                       } catch (e) {
                                                         Get.showSnackbar(
                                                             GetSnackBar(
@@ -792,7 +794,9 @@ class _ChatPageState extends State<ChatPage> {
                                                                   chatId: _chatController
                                                                       .selectedChats[
                                                                           0]
-                                                                      .id);
+                                                                      .id,
+                                                                  isRegenerating:
+                                                                      false);
                                                         } catch (e) {
                                                           Get.showSnackbar(
                                                               GetSnackBar(
