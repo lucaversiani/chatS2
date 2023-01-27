@@ -27,7 +27,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       });
     } catch (e) {
       throw FirebaseException(
-          code: "remote_datasource_impl-addNewUser",
+          code: "remote_datasource_impl-addUser",
           message: e.toString(),
           plugin: 'Firestore');
     }
@@ -131,7 +131,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       await instance.collection("chats").doc(chat.id).delete();
     } catch (e) {
       throw FirebaseException(
-          code: "remote_datasource_impl-updateChatSelection",
+          code: "remote_datasource_impl-deleteChat",
           message: e.toString(),
           plugin: 'Firestore');
     }
@@ -145,7 +145,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       });
     } catch (e) {
       throw FirebaseException(
-          code: "remote_datasource_impl-updateChatSelection",
+          code: "remote_datasource_impl-deleteLastMessage",
           message: e.toString(),
           plugin: 'Firestore');
     }
@@ -159,7 +159,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       });
     } catch (e) {
       throw FirebaseException(
-          code: "remote_datasource_impl-updateChatSelection",
+          code: "remote_datasource_impl-addMessageInConversation",
           message: e.toString(),
           plugin: 'Firestore');
     }
@@ -217,7 +217,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       var secretList = querySnapshot.docs.map((doc) => doc.data()).toList();
       return secretList;
     } catch (e) {
-      throw UnimplementedError();
+      throw FirebaseException(
+          code: "remote_datasource_impl-getSecrets",
+          message: e.toString(),
+          plugin: 'Firestore');
     }
   }
 }
