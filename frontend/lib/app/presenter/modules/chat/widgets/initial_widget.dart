@@ -41,7 +41,7 @@ class _InitialChatWidgetState extends State<InitialChatWidget> {
     return Expanded(
       child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxHeight > 400) {
+        if (constraints.maxHeight > 400 && constraints.maxWidth > 400) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
