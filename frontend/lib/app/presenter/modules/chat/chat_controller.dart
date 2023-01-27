@@ -201,6 +201,9 @@ class ChatController extends GetxController {
     } else {
       final memory =
           chats.where((element) => element.id == chatId).toList()[0].memory;
+
+      memory["buffer"].removeLast();
+
       chatMemory = jsonEncode({
         "human_prefix": memory["human_prefix"],
         "ai_prefix": memory["ai_prefix"],
