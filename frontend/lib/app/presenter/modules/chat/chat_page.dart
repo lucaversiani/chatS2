@@ -22,8 +22,7 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage>
-    with SingleTickerProviderStateMixin {
+class _ChatPageState extends State<ChatPage> {
   Timer? _timer;
   final _chatController = Get.find<ChatController>();
   final _formKey = GlobalKey<FormState>();
@@ -54,7 +53,6 @@ class _ChatPageState extends State<ChatPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
       body: Obx(() => Get.find<UserController>().user.value.emailVerified!
           ? Column(
               children: [
@@ -473,11 +471,7 @@ class _ChatPageState extends State<ChatPage>
                                                                 .isLoadingChatMessage
                                                                 .value &&
                                                             index ==
-                                                                _chatController
-                                                                        .selectedChats[
-                                                                            0]
-                                                                        .conversation
-                                                                        .length -
+                                                                _chatController.selectedChats[0].conversation.length -
                                                                     1) {
                                                           return SizedBox(
                                                             width: 600,
@@ -550,21 +544,14 @@ class _ChatPageState extends State<ChatPage>
                                                               ],
                                                             ),
                                                           );
-                                                        } else if (_chatController
-                                                                    .selectedChats[
-                                                                        0]
-                                                                    .lastMessageFailed ==
+                                                        } else if (_chatController.selectedChats[0].lastMessageFailed ==
                                                                 true &&
                                                             _chatController
                                                                     .isLoadingChatMessageFailure
                                                                     .value ==
                                                                 false &&
                                                             index ==
-                                                                _chatController
-                                                                        .selectedChats[
-                                                                            0]
-                                                                        .conversation
-                                                                        .length -
+                                                                _chatController.selectedChats[0].conversation.length -
                                                                     1) {
                                                           return SizedBox(
                                                             width: 600,
@@ -649,11 +636,7 @@ class _ChatPageState extends State<ChatPage>
                                                                 .isLoadingChatMessageFailure
                                                                 .value &&
                                                             index ==
-                                                                _chatController
-                                                                        .selectedChats[
-                                                                            0]
-                                                                        .conversation
-                                                                        .length -
+                                                                _chatController.selectedChats[0].conversation.length -
                                                                     1) {
                                                           return SizedBox(
                                                             width: 600,
@@ -734,29 +717,17 @@ class _ChatPageState extends State<ChatPage>
                                                                     0]
                                                                 .conversation
                                                                 .isNotEmpty &&
-                                                            _chatController
-                                                                        .selectedChats[
-                                                                            0]
-                                                                        .conversation
-                                                                        .length %
-                                                                    2 !=
+                                                            _chatController.selectedChats[0].conversation.length % 2 !=
                                                                 0 &&
                                                             _chatController
                                                                     .isLoadingChatMessage
                                                                     .value ==
                                                                 false &&
                                                             _chatController
-                                                                    .selectedChats[
-                                                                        0]
+                                                                    .selectedChats[0]
                                                                     .lastMessageFailed ==
                                                                 false &&
-                                                            index ==
-                                                                _chatController
-                                                                        .selectedChats[
-                                                                            0]
-                                                                        .conversation
-                                                                        .length -
-                                                                    1) {
+                                                            index == _chatController.selectedChats[0].conversation.length - 1) {
                                                           return Column(
                                                             children: [
                                                               Container(

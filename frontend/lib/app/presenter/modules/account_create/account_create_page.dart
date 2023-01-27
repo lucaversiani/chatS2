@@ -17,7 +17,6 @@ class _AccountCreatePageState extends State<AccountCreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
       body: Obx(
         () => Align(
           alignment: Alignment.center,

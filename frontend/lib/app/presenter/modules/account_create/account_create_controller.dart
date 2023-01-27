@@ -8,6 +8,10 @@ import '../../core/user_controller.dart';
 import '../../core/authorization_controller.dart';
 
 class AccountCreateController extends GetxController {
+  final AddUserUseCase addUserUseCase;
+
+  AccountCreateController({required this.addUserUseCase});
+
   var nameController = TextEditingController().obs;
   var mailController = TextEditingController().obs;
   var passwordController = TextEditingController().obs;
@@ -15,10 +19,6 @@ class AccountCreateController extends GetxController {
   var regexPassword = RegExp(r'^(?=.*[A-Z])');
 
   var isLoading = false.obs;
-
-  final AddUserUseCase addUserUseCase;
-
-  AccountCreateController({required this.addUserUseCase});
 
   Future<void> createUserAndLogin() async {
     isLoading.value = true;

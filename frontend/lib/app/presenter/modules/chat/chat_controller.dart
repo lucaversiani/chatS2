@@ -74,8 +74,6 @@ class ChatController extends GetxController {
   var chats = [].obs;
   var selectedChats = [].obs;
 
-  var humanRe = RegExp(r'(?<=Human: )(.*)(?=AI)');
-
   var isLoadingChatCreation = false.obs;
   var isLoadingChatsDeletion = false.obs;
   var isLoadingChatMessage = false.obs;

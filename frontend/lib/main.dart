@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final sessionConfig = SessionConfig(
         invalidateSessionForAppLostFocus: const Duration(minutes: 15),
-        invalidateSessionForUserInactiviity: const Duration(minutes: 15));
+        invalidateSessionForUserInactivity: const Duration(minutes: 15));
 
     sessionConfig.stream.listen((SessionTimeoutState timeoutEvent) {
       if (timeoutEvent == SessionTimeoutState.userInactivityTimeout) {
@@ -77,12 +77,57 @@ class MyApp extends StatelessWidget {
         title: 'ChatS2',
         theme: ThemeData(
             fontFamily: 'Trueno',
-            toggleableActiveColor: Colors.grey.shade600,
             visualDensity: VisualDensity.adaptivePlatformDensity,
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
                 .copyWith(
                     secondary: Colors.grey.shade600,
-                    brightness: Brightness.dark)),
+                    brightness: Brightness.dark),
+            switchTheme: SwitchThemeData(
+              thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return Colors.grey.shade600;
+                }
+                return null;
+              }),
+              trackColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return Colors.grey.shade600;
+                }
+                return null;
+              }),
+            ),
+            radioTheme: RadioThemeData(
+              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return Colors.grey.shade600;
+                }
+                return null;
+              }),
+            ),
+            checkboxTheme: CheckboxThemeData(
+              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return Colors.grey.shade600;
+                }
+                return null;
+              }),
+            )),
         getPages: AppPages.pages,
         initialRoute: Routes.ROOT,
       ),

@@ -10,11 +10,11 @@ class SecretsController extends GetxController {
     super.onInit();
   }
 
-  var secrets = SecretsModel().obs;
-
   final GetSecretsUseCase getSecretsUseCase;
 
   SecretsController({required this.getSecretsUseCase});
+
+  var secrets = SecretsModel().obs;
 
   Future<void> getSecrets() async {
     final result = await getSecretsUseCase.call();
