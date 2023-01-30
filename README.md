@@ -19,7 +19,7 @@ Frontend was developed in Flutter Web and uses:
 
 ----------------------------------------------------------------------------------------------------------------
 
-Above all, this was a project with the purpose of improve our knowledge on this study field.
+Above all, this project was developed with the purpose of improving our knowledge on this study field.
 
 - LangChain documentation: https://langchain.readthedocs.io/en/latest/
 - App link: https://chatgpt-ed4c7.web.app/
