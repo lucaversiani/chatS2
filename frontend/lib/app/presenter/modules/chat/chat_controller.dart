@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_init_to_null, prefer_typing_uninitialized_variables
 
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/app/domain/use_cases/chat/add_chat_uc.dart';
 import 'package:frontend/app/domain/use_cases/chat/add_message_in_conversation_uc.dart';
@@ -12,7 +14,9 @@ import 'package:frontend/app/domain/use_cases/chat/send_chat_uc.dart';
 import 'package:frontend/app/domain/use_cases/chat/update_chat_memory_uc.dart';
 import 'package:frontend/app/domain/use_cases/chat/update_chat_selection.dart';
 import 'package:frontend/app/domain/use_cases/chat/update_message_failure_uc.dart';
+import 'package:frontend/app/domain/use_cases/chat/update_user_verified_email_uc.dart';
 import 'package:frontend/app/external/models/chat_model.dart';
+import 'package:frontend/app/external/models/user_model.dart';
 import 'package:frontend/app/presenter/core/secrets_controller.dart';
 import 'package:frontend/app/presenter/core/user_controller.dart';
 import 'package:get/get.dart';
@@ -21,6 +25,10 @@ class ChatController extends GetxController {
   @override
   void onInit() async {
     await getChats(userUid: Get.find<UserController>().user.value.userUid!);
+
+    if (Get.find<UserController>().user.value.emailVerified == false) {
+      await checkForAccountVerification();
+    }
 
     super.onInit();
   }
@@ -34,6 +42,7 @@ class ChatController extends GetxController {
   final AddMessageInConversationUseCase addMessageInConversationUseCase;
   final UpdateMessageFailureUseCase updateMessageFailureUseCase;
   final DeleteLastMessageUseCase deleteLastMessageUseCase;
+  final UpdateUserVerifiedEmail updateUserVerifiedEmail;
 
   ChatController(
       {required this.sendChatUseCase,
@@ -44,11 +53,12 @@ class ChatController extends GetxController {
       required this.deleteChatUseCase,
       required this.addMessageInConversationUseCase,
       required this.updateMessageFailureUseCase,
-      required this.deleteLastMessageUseCase});
+      required this.deleteLastMessageUseCase,
+      required this.updateUserVerifiedEmail});
 
   var chatController = TextEditingController().obs;
 
-  var subscription;
+  var chatSubscription;
 
   List<Color> boostedColors = [
     const Color.fromARGB(255, 21, 199, 154),
@@ -80,8 +90,26 @@ class ChatController extends GetxController {
   var isLoadingChatSelection = false.obs;
   var isLoadingChatMessageFailure = false.obs;
 
+  Future<void> checkForAccountVerification() async {
+    final completer = Completer();
+
+    await Get.find<FirebaseAuth>().currentUser!.reload();
+
+    if (Get.find<FirebaseAuth>().currentUser!.emailVerified == false) {
+      await 2500.milliseconds.delay();
+      return checkForAccountVerification();
+    } else {
+      await updateUserVerifiedEmail
+          .call(UserModel(
+              id: Get.find<UserController>().user.value.id,
+              emailVerified: true))
+          .then((_) => completer.complete());
+    }
+    return completer.future;
+  }
+
   Future<void> getChats({required String userUid}) async {
-    subscription = getChatsUseCase.call(userUid).listen((chats) {
+    chatSubscription = getChatsUseCase.call(userUid).listen((chats) {
       this.chats.value = chats;
       selectedChats.value =
           chats.where((element) => element.selected == true).toList();
@@ -268,7 +296,7 @@ class ChatController extends GetxController {
   }
 
   void clearChats() {
-    if (subscription != null) subscription.cancel();
+    if (chatSubscription != null) chatSubscription.cancel();
     Future.delayed(const Duration(seconds: 1), () => chats.value = []);
   }
 }

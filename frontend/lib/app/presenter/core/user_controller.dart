@@ -3,8 +3,8 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:frontend/app/domain/use_cases/chat/get_user_uc.dart';
-import 'package:frontend/app/domain/use_cases/chat/update_user_verified_email_uc.dart';
 import 'package:frontend/app/external/models/user_model.dart';
 import 'package:get/get.dart';
 
@@ -14,20 +14,14 @@ class UserController extends GetxController {
     if (Get.find<FirebaseAuth>().currentUser != null) {
       await getUser(userUid: Get.find<FirebaseAuth>().currentUser!.uid);
       await waitForUser();
-      if (Get.find<FirebaseAuth>().currentUser!.emailVerified) {
-        await updateUserVerifiedEmail
-            .call(UserModel(id: user.value.id, emailVerified: true));
-      }
     }
 
     super.onInit();
   }
 
   final GetUserUseCase getUserUseCase;
-  final UpdateUserVerifiedEmail updateUserVerifiedEmail;
 
-  UserController(
-      {required this.getUserUseCase, required this.updateUserVerifiedEmail});
+  UserController({required this.getUserUseCase});
 
   var user = UserModel().obs;
 

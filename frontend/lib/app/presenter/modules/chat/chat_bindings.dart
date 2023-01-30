@@ -1,3 +1,4 @@
+import 'package:frontend/app/domain/use_cases/chat/update_user_verified_email_uc.dart';
 import 'package:get/instance_manager.dart';
 
 import '../../../domain/use_cases/chat/add_chat_uc.dart';
@@ -38,6 +39,9 @@ class ChatBinding implements Bindings {
     Get.lazyPut<DeleteLastMessageUseCase>(
         () => DeleteLastMessageUseCase(repository: Get.find()),
         fenix: true);
+    Get.lazyPut<UpdateUserVerifiedEmail>(
+        () => UpdateUserVerifiedEmail(repository: Get.find()),
+        fenix: true);
 
     Get.lazyPut<ChatController>(
         () => ChatController(
@@ -49,7 +53,8 @@ class ChatBinding implements Bindings {
             deleteChatUseCase: Get.find(),
             addMessageInConversationUseCase: Get.find(),
             updateMessageFailureUseCase: Get.find(),
-            deleteLastMessageUseCase: Get.find()),
+            deleteLastMessageUseCase: Get.find(),
+            updateUserVerifiedEmail: Get.find()),
         fenix: true);
   }
 }

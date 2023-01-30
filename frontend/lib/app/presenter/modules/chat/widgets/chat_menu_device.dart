@@ -279,7 +279,7 @@ class _ChatMenuDeviceState extends State<ChatMenuDevice> {
                         width: 10,
                       ),
                       Text(
-                        "Log out",
+                        "Sign out",
                         style: TextStyle(fontSize: 11),
                       ),
                     ],

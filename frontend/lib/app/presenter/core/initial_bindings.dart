@@ -47,9 +47,7 @@ class InitialBinding implements Bindings {
         () => UpdateUserVerifiedEmail(repository: Get.find()),
         fenix: true);
 
-    Get.put<UserController>(
-        UserController(
-            getUserUseCase: Get.find(), updateUserVerifiedEmail: Get.find()),
+    Get.put<UserController>(UserController(getUserUseCase: Get.find()),
         permanent: true);
 
     Get.put<AuthorizationController>(AuthorizationController(),

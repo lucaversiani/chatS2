@@ -245,7 +245,7 @@ class _ChatMenuState extends State<ChatMenu> {
                   width: 10,
                 ),
                 Text(
-                  "Log out",
+                  "Sign out",
                   style: TextStyle(fontSize: 11),
                 ),
               ],
